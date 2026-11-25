@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gruppeneinteilung</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <h1>🎲 Gruppeneinteilung</h1>
+      <span id="live" class="live">live</span>
+    </header>
+
+    <div id="loading" class="muted">Lade …</div>
+
+    <!-- Anmeldung -->
+    <section id="joinCard" class="card hidden">
+      <h2>Mach mit!</h2>
+      <form id="joinForm" autocomplete="off">
+        <label for="name">Dein Name</label>
+        <div class="row">
+          <input id="name" type="text" maxlength="40" placeholder="z. B. Anna M." required>
+          <button class="shrink" type="submit">Anmelden</button>
+        </div>
+        <div id="joinError" class="error" role="alert"></div>
+      </form>
+      <p id="joinInfo" class="hint"></p>
+    </section>
+
+    <section id="closedCard" class="card hidden">
+      <p><strong>Die Anmeldung ist geschlossen.</strong></p>
+    </section>
+
+    <!-- Wartezustand -->
+    <section id="waitCard" class="card hidden">
+      <h2>Hallo <span id="meName"></span>, du bist dabei! 👋</h2>
+      <p>Die Einteilung erscheint hier automatisch, sobald sie ausgelost wurde – diese Seite musst du nicht neu laden.</p>
+      <p class="small muted"><button class="link" id="leaveBtn" type="button">Das bin nicht ich / abmelden</button></p>
+    </section>
+
+    <!-- Auslosung läuft -->
+    <section id="shuffleCard" class="hero hidden" aria-live="polite">
+      <div class="shuffle"><span class="spin">🎲</span> Es wird gelost …</div>
+    </section>
+
+    <!-- Ergebnis -->
+    <section id="resultHero" class="hero hidden" aria-live="polite">
+      <div class="label">Du bist in</div>
+      <div class="big-name" id="myGroup"></div>
+    </section>
+
+    <section id="waitlistHero" class="hero hidden">
+      <div class="big-name">Warteliste</div>
+      <p class="muted">Aktuell sind alle Gruppen voll. Sobald ein Platz frei wird, wirst du automatisch eingeteilt.</p>
+    </section>
+
+    <section id="groupsCard" class="hidden">
+      <p class="muted small" id="groupsNote"></p>
+      <div id="groups" class="groups"></div>
+      <p class="small muted" id="leaveRow" style="margin-top:14px"><button class="link" id="leaveBtn2" type="button">Das bin nicht ich / abmelden</button></p>
+    </section>
+
+    <!-- Teilnehmende vor der Auslosung -->
+    <section id="peopleCard" class="card hidden">
+      <h2>Bisher angemeldet (<span id="peopleCount">0</span>)</h2>
+      <ul id="people" class="chips"></ul>
+    </section>
+  </main>
+
+  <script src="/common.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Gruppeneinteilung – Admin</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Login -->
+  <main id="loginView" class="wrap login">
+    <h1>🔒 Admin</h1>
+    <form id="loginForm" class="card">
+      <label for="pw">Passwort</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+      <div id="loginError" class="error" role="alert"></div>
+      <div class="actions"><button type="submit">Anmelden</button></div>
+    </form>
+  </main>
+
+  <!-- Verwaltung -->
+  <main id="adminView" class="wrap hidden">
+    <header class="top">
+      <h1>🎲 Gruppeneinteilung – Admin</h1>
+      <div>
+        <span id="live" class="live">live</span>
+        <button class="link" id="logoutBtn" type="button" style="margin-left:12px">Abmelden</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Link für die Teilnehmenden</h2>
+      <div class="share">
+        <code id="shareUrl"></code>
+        <button class="secondary" id="copyUrl" type="button">Link kopieren</button>
+      </div>
+      <p class="hint" style="margin-top:8px">Diesen Link verteilst du. Die Admin-Seite (<code>/admin</code>) ist durch das Passwort geschützt.</p>
+    </section>
+
+    <section class="card">
+      <h2>1. Einstellungen</h2>
+      <div class="row">
+        <div>
+          <label for="groupCount">Anzahl der Gruppen</label>
+          <input id="groupCount" type="number" min="1" max="50" value="3">
+        </div>
+        <div>
+          <label for="groupSize">Max. Gruppengröße <span class="muted">(optional)</span></label>
+          <input id="groupSize" type="number" min="1" max="500" placeholder="unbegrenzt">
+        </div>
+      </div>
+      <p class="hint" id="sizeHint"></p>
+
+      <div style="margin-top:14px">
+        <label for="groupNames">Gruppennamen <span class="muted">(optional, einer pro Zeile)</span></label>
+        <textarea id="groupNames" placeholder="Rot&#10;Blau&#10;Grün"></textarea>
+        <p class="hint">Fehlende Namen werden zu „Gruppe 1“, „Gruppe 2“ …</p>
+      </div>
+
+      <div style="margin-top:14px">
+        <label class="toggle"><input type="checkbox" id="regOpen"> Anmeldung für Teilnehmende ist offen</label>
+        <p class="hint">Auch nach der Auslosung angemeldete Personen werden automatisch der kleinsten Gruppe mit freiem Platz zugeteilt.</p>
+      </div>
+
+      <div class="actions">
+        <button class="secondary" id="saveBtn" type="button">Einstellungen speichern</button>
+        <span id="saveMsg" class="muted small" style="align-self:center"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Teilnehmende <span class="badge" id="countBadge">0</span></h2>
+      <ul id="people" class="chips" style="margin-bottom:14px"></ul>
+      <details>
+        <summary>Namen manuell hinzufügen</summary>
+        <div style="margin-top:10px">
+          <textarea id="addNames" placeholder="Ein Name pro Zeile"></textarea>
+          <div class="actions"><button class="secondary" id="addBtn" type="button">Hinzufügen</button></div>
+          <div id="addMsg" class="hint"></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>3. Auslosen</h2>
+      <p id="statusText" class="muted"></p>
+      <div class="actions" style="margin-top:0">
+        <button class="big" id="drawBtn" type="button">🎲 Zufällig einteilen</button>
+        <button class="secondary" id="resetBtn" type="button">Einteilung zurücksetzen</button>
+        <button class="danger" id="clearBtn" type="button">Alle Teilnehmenden entfernen</button>
+      </div>
+      <div id="actionError" class="error" role="alert"></div>
+    </section>
+
+    <section id="resultCard" class="hidden">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap">
+        <h2 style="margin:0">Ergebnis <span class="badge ok">für alle sichtbar</span></h2>
+        <button class="secondary" id="copyResult" type="button">Ergebnis als Text kopieren</button>
+      </div>
+      <div id="groups" class="groups"></div>
+    </section>
+  </main>
+
+  <script src="/common.js"></script>
+  <script src="/admin.js"></script>
+</body>
+</html>

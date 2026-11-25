@@ -1,0 +1,14 @@
+{
+  "name": "zufallsgenerator",
+  "version": "1.0.0",
+  "description": "Zufällige Gruppeneinteilung als Website – mit Admin-Oberfläche und Live-Ansicht für Teilnehmende",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "private": true
+}
